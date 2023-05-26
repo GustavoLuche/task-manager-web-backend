@@ -13,8 +13,11 @@ app.set('views', path.join(__dirname, 'views'));
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Middleware de validação dos dados recebidos
+const validationMiddleware = require('./utils/validationMiddleware');
+
 // Rotas relacionadas às tarefas
 const taskRoutes = require("./routes/taskRoutes");
-app.use("/", taskRoutes);
+app.use("/", validationMiddleware, taskRoutes);
 
 module.exports = app;
