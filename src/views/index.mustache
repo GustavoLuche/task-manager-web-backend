@@ -13,5 +13,15 @@
         <li>{{name}} - {{state}}</li>
         {{/tasks}}
     </ul>
+    <form action="/tasks" method="post">
+        <input type="text" id="name" name="name">
+        <select name="state" id="state">
+                <option>Situação</option>
+                {{#state}}
+                <option value={{value}} {{#selected}}selected{{/selected}}>{{name}}</option>
+                {{/state}}
+            </select>
+        <input type="submit" value="Salvar">
+    </form>
 </body>
 </html>

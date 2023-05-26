@@ -25,6 +25,21 @@ const taskController = {
   getTasks() {
     return tasks;
   },
+
+  // Criar uma nova tarefa
+  createTask(req, res) {
+    const {name, state} = req.body;
+
+    const task = {
+      id: ++taskIdCounter,
+      name: name,
+      state: state
+    };
+
+    tasks.push(task);
+
+    res.redirect('/');
+  },
 };
 
 module.exports = taskController;
