@@ -10,7 +10,7 @@
     <h1>TASK MANAGER APP</h1>
     <ul>
         {{#tasks}}
-        <li>{{name}} - {{state}}</li>
+        <li>{{name}} - {{state}} - <a href="tasks/{{id}}">iniciar</a></li>
         {{/tasks}}
     </ul>
     <form action="/tasks" method="post">

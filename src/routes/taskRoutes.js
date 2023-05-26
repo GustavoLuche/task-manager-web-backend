@@ -33,4 +33,9 @@ router.post("/tasks", (req, res) => {
   taskController.createTask(req, res);
 });
 
+// Rota para mudar o estado de uma tarefa
+router.get("/tasks/:id", (req, res) => {
+  taskController.updateTaskState(req, res);
+});
+
 module.exports = router;
