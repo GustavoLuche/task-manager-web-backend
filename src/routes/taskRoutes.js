@@ -6,8 +6,8 @@ const taskController = require("../controllers/taskController");
 
 // Rota para exibir a página inicial
 router.get("/", (req, res) => {
-  const tasks = taskController.getTasks();
-  let state_default = "";
+  const tasks = taskController.getTasks(req);
+  let state_default = req.session.state_default || "";
 
   // Filtrando as tarefas com estado
   let aguardando = tasks.filter((task) => task.state === "aguardando");

@@ -4,8 +4,8 @@ let taskIdCounter = 0;
 // Controlador das tarefas
 const taskController = {
   // Obter todas as tarefas
-  getTasks() {
-    return tasks;
+  getTasks(req) {
+    return req.session.tasks || [];
   },
 
   // Criar uma nova tarefa
@@ -13,19 +13,22 @@ const taskController = {
     const { name, state } = req.body;
 
     const task = {
-      id: ++taskIdCounter,
+      id: ++req.session.taskIdCounter,
       name: name,
       state: state,
     };
 
-    tasks.push(task);
+    req.session.tasks = req.session.tasks || [];
+    req.session.tasks.push(task);
 
     res.redirect("/");
   },
 
   // Mudar o estado de uma tarefa
   updateTaskState(req, res) {
-    const task = tasks.find((task) => task.id === parseInt(req.params.id));
+    const taskId = parseInt(req.params.id);
+    const task = req.session.tasks.find((task) => task.id === taskId);
+
     if (!task) {
       return res.status(404).send("Tarefa não encontrada.");
     }
@@ -41,7 +44,8 @@ const taskController = {
 
   // Finalizar uma tarefa
   finishTask(req, res) {
-    const task = tasks.find(task => task.id === parseInt(req.params.id));
+    const taskId = parseInt(req.params.id);
+    const task = req.session.tasks.find((task) => task.id === taskId);
     if (!task) {
       return res.status(404).send('Tarefa não encontrada.');
     }
