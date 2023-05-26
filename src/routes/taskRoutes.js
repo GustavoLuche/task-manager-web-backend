@@ -38,4 +38,9 @@ router.get("/tasks/:id", (req, res) => {
   taskController.updateTaskState(req, res);
 });
 
+// Rota para finalizar uma tarefa
+router.get("/tasks/del/:id", (req, res) => {
+  taskController.finishTask(req, res);
+});
+
 module.exports = router;

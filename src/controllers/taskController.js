@@ -55,6 +55,20 @@ const taskController = {
     }
 
     res.redirect("/");
+  },
+
+  // Finalizar uma tarefa
+  finishTask(req, res) {
+    const task = tasks.find(task => task.id === parseInt(req.params.id));
+    if (!task) {
+      return res.status(404).send('Tarefa não encontrada.');
+    }
+
+    if (task.state === 'aguardando') {
+      return res.status(400).send('A tarefa está aguardando e não pode ser finalizada.');
+    }
+    task.state = 'finalizado';
+    res.redirect("/");
   }
 };
 
