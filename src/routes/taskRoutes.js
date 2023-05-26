@@ -43,7 +43,11 @@ router.post("/tasks", (req, res) => {
 
 // Rota para mudar o estado de uma tarefa
 router.get("/tasks/:id", (req, res) => {
-  taskController.updateTaskState(req, res);
+  try {
+    taskController.updateTaskState(req, res);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 });
 
 // Rota para finalizar uma tarefa

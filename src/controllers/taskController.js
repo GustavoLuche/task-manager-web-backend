@@ -13,7 +13,7 @@ const taskController = {
     const { name, state } = req.body;
 
     const task = {
-      id: ++req.session.taskIdCounter,
+      id: ++taskIdCounter,
       name: name,
       state: state,
     };
@@ -27,6 +27,7 @@ const taskController = {
   // Mudar o estado de uma tarefa
   updateTaskState(req, res) {
     const taskId = parseInt(req.params.id);
+    console.log(taskId);
     const task = req.session.tasks.find((task) => task.id === taskId);
 
     if (!task) {
@@ -47,15 +48,17 @@ const taskController = {
     const taskId = parseInt(req.params.id);
     const task = req.session.tasks.find((task) => task.id === taskId);
     if (!task) {
-      return res.status(404).send('Tarefa não encontrada.');
+      return res.status(404).send("Tarefa não encontrada.");
     }
 
-    if (task.state === 'aguardando') {
-      return res.status(400).send('A tarefa está aguardando e não pode ser finalizada.');
+    if (task.state === "aguardando") {
+      return res
+        .status(400)
+        .send("A tarefa está aguardando e não pode ser finalizada.");
     }
-    task.state = 'finalizado';
+    task.state = "finalizado";
     res.redirect("/");
-  }
+  },
 };
 
 module.exports = taskController;

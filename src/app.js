@@ -24,6 +24,9 @@ app.use(
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Middleware para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Middleware de validação dos dados recebidos
 const validationMiddleware = require("./utils/validationMiddleware");
 
