@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Rota para exibir a página inicial
 router.get("/", (req, res) => {
-    res.send('Hello');
+    res.render('index');
 });
 
 module.exports = router;
