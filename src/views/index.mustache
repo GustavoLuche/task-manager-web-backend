@@ -7,21 +7,42 @@
     <title>TASK MANAGER APP</title>
 </head>
 <body>
-    <h1>TASK MANAGER APP</h1>
-    <ul>
-        {{#tasks}}
-        <li>{{name}} - {{state}} - <a href="tasks/{{id}}">iniciar</a> - <a href="/tasks/del/{{id}}">concluir</a></li>
-        {{/tasks}}
-    </ul>
     <form action="/tasks" method="post">
-        <input type="text" id="name" name="name">
-        <select name="state" id="state">
-                <option>Situação</option>
-                {{#state}}
-                <option value={{value}} {{#selected}}selected{{/selected}}>{{name}}</option>
-                {{/state}}
-            </select>
-        <input type="submit" value="Salvar">
+        <fieldset>
+            <legend>Nova Atividade:</legend>
+            <input type="text" id="name" name="name">
+            <select name="state" id="state">
+                    <option>Situação</option>
+                    {{#state}}
+                    <option value={{value}} {{#selected}}selected{{/selected}}>{{name}}</option>
+                    {{/state}}
+                </select>
+            <input type="submit" value="Salvar">
+        </fieldset>
     </form>
+
+    <h2>Aguardando</h2>
+    <hr>
+    <ul>
+        {{#aguardando}}
+            <li>{{name}} <a href="tasks/{{id}}">iniciar</a></li>
+        {{/aguardando}}
+    </ul>
+
+    <h2>Em Andamento</h2>
+    <hr>
+        <ul>
+        {{#andamento}}
+            <li>{{name}} <a href="/tasks/del/{{id}}">concluir</a></li>
+        {{/andamento}}
+    </ul>
+
+    <h2>Finalizados</h2>
+    <hr>
+        <ul>
+        {{#finalizados}}
+            <li>{{name}}</li>
+        {{/finalizados}}
+    </ul>
 </body>
 </html>

@@ -9,6 +9,11 @@ router.get("/", (req, res) => {
   const tasks = taskController.getTasks();
   let state_default = "";
 
+  // Filtrando as tarefas com estado
+  let aguardando = tasks.filter((task) => task.state === "aguardando");
+  let andamento = tasks.filter((task) => task.state === "andamento");
+  let finalizado = tasks.filter((task) => task.state === "finalizado");
+
   let params = {
     tasks: tasks,
     state: [
@@ -23,6 +28,9 @@ router.get("/", (req, res) => {
         selected: state_default == "andamento",
       },
     ],
+    aguardando: aguardando,
+    andamento: andamento,
+    finalizados: finalizado,
   };
 
   res.render("index", params);
