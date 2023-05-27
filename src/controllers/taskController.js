@@ -1,10 +1,7 @@
-let tasks = [];
-let taskIdCounter = 0;
-
 // Controlador das tarefas
 const taskController = {
   // Obter todas as tarefas
-  getTasks(req) {
+  getTasks(req,) {
     return req.session.tasks || [];
   },
 
@@ -13,10 +10,14 @@ const taskController = {
     const { name, state } = req.body;
 
     const task = {
-      id: ++taskIdCounter,
+      id: ++req.session.taskId,
       name: name,
       state: state,
     };
+
+    if (isNaN(task.id)) {
+      task.id = 0;
+    }
 
     req.session.tasks = req.session.tasks || [];
     req.session.tasks.push(task);
@@ -27,7 +28,6 @@ const taskController = {
   // Mudar o estado de uma tarefa
   updateTaskState(req, res) {
     const taskId = parseInt(req.params.id);
-    console.log(taskId);
     const task = req.session.tasks.find((task) => task.id === taskId);
 
     if (!task) {
