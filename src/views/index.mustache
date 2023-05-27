@@ -26,7 +26,9 @@
     <hr>
     <ul>
         {{#aguardando}}
-            <li>{{name}} <a href="tasks/{{id}}">iniciar</a></li>
+            <div class="{{priority}}" data-id="{{id}}">
+                <li data-id="{{id}}">{{name}}</li><a href="tasks/{{id}}?priority=alto">iniciar</a>
+            </div>
         {{/aguardando}}
     </ul>
 
@@ -34,7 +36,9 @@
     <hr>
         <ul>
         {{#andamento}}
-            <li>{{name}} <a href="/tasks/del/{{id}}">concluir</a></li>
+            <div class="{{priority}}" data-id="{{id}}">
+                <li data-id="{{id}}">{{name}}</li><a href="/tasks/del/{{id}}?priority=">concluir</a>
+            </div>
         {{/andamento}}
     </ul>
 
@@ -42,8 +46,12 @@
     <hr>
         <ul>
         {{#finalizados}}
-            <li>{{name}}</li>
+            <div class="{{priority}}">
+                <li class="finalizado">{{name}}</li>
+            </div>
         {{/finalizados}}
     </ul>
+
+    <script src="js/priority.js" type="module"></script>
 </body>
 </html>

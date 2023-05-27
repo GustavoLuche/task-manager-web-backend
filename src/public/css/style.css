@@ -34,17 +34,36 @@ select {
     padding: 2px;
 }
 
-form {
-    margin-bottom: 1rem;
+h2 {
+    margin-top: 15px;
+}
+
+ul div {
+    display: flex;
+    width: 50%;
+    margin: 10px 0 0 2rem;
+    padding: 3px;
+    justify-content: space-between;
 }
 
 li {
-    width: 50%;
-    list-style: none;
-    padding: 5px;
-    margin: 1rem 0 1rem 2rem;
+    list-style-type: none;
+    width: 95%;
 }
 
-a {
-    float: right;
+.finalizado {
+    text-decoration: line-through;
+    width: 100%;
+}
+
+.alto {
+    background-color: #CD5C5C;
+}
+
+.medio {
+    background-color: #FEFFBE;
+}
+
+.baixo {
+    background-color: #90EE90;
 }

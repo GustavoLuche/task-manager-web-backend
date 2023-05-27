@@ -13,6 +13,7 @@ const taskController = {
       id: ++req.session.taskId,
       name: name,
       state: state,
+      priority: 'default'
     };
 
     if (isNaN(task.id)) {
@@ -29,6 +30,7 @@ const taskController = {
   updateTaskState(req, res) {
     const taskId = parseInt(req.params.id);
     const task = req.session.tasks.find((task) => task.id === taskId);
+    task.priority = req.query.priority;
 
     if (!task) {
       return res.status(404).send("Tarefa não encontrada.");
@@ -47,6 +49,8 @@ const taskController = {
   finishTask(req, res) {
     const taskId = parseInt(req.params.id);
     const task = req.session.tasks.find((task) => task.id === taskId);
+    task.priority = req.query.priority;
+
     if (!task) {
       return res.status(404).send("Tarefa não encontrada.");
     }
