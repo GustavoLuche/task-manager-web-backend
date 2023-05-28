@@ -27,7 +27,7 @@
     <ul>
         {{#aguardando}}
             <div class="{{priority}}" data-id="{{id}}">
-                <li data-id="{{id}}">{{name}}</li><a href="tasks/{{id}}?priority=alto">iniciar</a>
+                <li data-id="{{id}}">{{name}}</li><a href="tasks/{{id}}?priority={{priority}}">iniciar</a>
             </div>
         {{/aguardando}}
     </ul>
@@ -37,7 +37,7 @@
         <ul>
         {{#andamento}}
             <div class="{{priority}}" data-id="{{id}}">
-                <li data-id="{{id}}">{{name}}</li><a href="/tasks/del/{{id}}?priority=">concluir</a>
+                <li data-id="{{id}}">{{name}}</li><a href="/tasks/del/{{id}}?priority={{priority}}">concluir</a>
             </div>
         {{/andamento}}
     </ul>
